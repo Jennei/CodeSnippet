@@ -6,9 +6,11 @@
 @file:      binary_search.py 
 @time:      2018/09/22 
 """
+from decorates import logtime
 
 
-def binary_search_loop(s: list, v: str):
+@logtime()
+def binary_search_loop(s: list, v: int):
     """
     二分查找：
         1.有序集合s中查找v,如果s的中间元素和v相等则返回，
@@ -29,7 +31,8 @@ def binary_search_loop(s: list, v: str):
     return None
 
 
-def binary_search_recursion(s: list, v: str, low: int, high: int):
+#@logtime(number=1)
+def binary_search_recursion(s: list, v: int, low: int, high: int):
     if low > high: return None
 
     mid = int((low + high) / 2)
@@ -42,9 +45,9 @@ def binary_search_recursion(s: list, v: str, low: int, high: int):
 
 
 if __name__ == '__main__':
+    s = [3, 2, 5, 7, 1, 4, 6, 9, 8, 0]
+    s.sort()
+    print(binary_search_loop(s, 1))
+    print(binary_search_recursion(s, 9, 0, len(s)-1))
     import timeit
-
-    t1 = timeit.Timer('binary_search_recursion([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 8, 0, 10)', 'from __main__ import binary_search_recursion')
-    t2 = timeit.Timer('binary_search_loop([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 8)', 'from __main__ import binary_search_loop')
-    print(f"recursive:{t1.timeit()}")
-    print(f"loop:{t2.timeit()}")
+    print(timeit.timeit(lambda :binary_search_recursion(s, 9, 0, len(s)-1)))
