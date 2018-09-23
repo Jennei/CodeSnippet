@@ -14,9 +14,8 @@ def partition(s: list, low: int, high: int):
     """
     x = s[high]
     left_arr_last_index = low - 1
-    left_arr_start_index = low
 
-    for right_arr_cursor in range(left_arr_start_index, high):
+    for right_arr_cursor in range(low, high):
         if s[right_arr_cursor] <= x:
             left_arr_last_index += 1
             s[left_arr_last_index], s[right_arr_cursor] = s[right_arr_cursor], s[left_arr_last_index]  # 往左边数组append一个元素
@@ -39,6 +38,6 @@ def quick_sort(s: list, low: int, high: int):
 
 
 if __name__ == '__main__':
-    s = [1,4,7,1,5,5,3,85,34,75,23,75,2,0]
+    s = [3, 2, 5, 7, 1, 4, 6, 9, 8, 0]
     quick_sort(s, 0, len(s)-1)
     print(s)
