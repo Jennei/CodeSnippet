@@ -6,6 +6,9 @@
 @file:      fibonacci.py 
 @time:      2018/09/23 
 """
+import time
+
+from utils import logger
 
 
 def fibonacci(n):
@@ -27,5 +30,7 @@ def fibonacci(n):
 
 
 if __name__ == '__main__':
-    for i in range(11):
-        print(fibonacci(i))
+    t1 = time.process_time()
+    logger.debug(list(map(fibonacci, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])))
+    t2 = time.process_time()
+    logger.debug(f'take {t2-t1}s')
